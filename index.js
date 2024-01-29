@@ -1,22 +1,13 @@
-const axios = require("axios");
+import express from "express";
+import cors from "cors";
+import userRouter from "./routes/userRouter.js";
 
+const app = express();
+const port = 8000;
+app.use(express.json());
+app.use(cors());
+app.use(userRouter);
 
-
-// axios("https://dummyapi.io/data/v1/post/60d21b0467d0d8992e610bc5", {
-//   headers: {
-//     "app-id": "65addd613a39f702e906d91c",
-//   },
-// }).then((response) => console.log(response.data));
-axios ("https://dummyapi.io/data/v1/user", {
-  headers: {
-    "app-id": "65addd613a39f702e906d91c",
-  },
-}).then((response) => console.log(response.data));
- 
-const getPosts = async () => {
-    const result = await axios.get("https://dummyapi.io/data/v1/post/",)
-    headers: {
-        "app-id": "65addd613a39f702e906d91c"
-    }
-    return result.data
-}
+app.listen(port, () => {
+  console.log(`http://localhost:${port}`);
+});
